@@ -7,16 +7,14 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name ="first_mock_users")
+@Table(name = "first_mock_users")
 public class MockUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long Id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long Id;
 
-    @Version
-    Integer version;
+  @Version Integer version;
 
-    String Name;
-    Integer rated;
-
+  String Name;
+  Integer rated;
 }

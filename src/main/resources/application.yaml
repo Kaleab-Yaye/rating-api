@@ -2,5 +2,5 @@ spring:
   application:
     name: rating-api
   profiles:
-    active:
+    active: dev
 

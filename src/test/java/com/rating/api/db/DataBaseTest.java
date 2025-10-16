@@ -1,8 +1,11 @@
 package com.rating.api.db;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.rating.api.domain.MockUser;
 import com.rating.api.repository.MockUserRepo;
 import com.rating.api.service.MockUserService;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,44 +13,36 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.Optional;
 
 @SpringBootTest
 @Testcontainers
 @ActiveProfiles("test")
 public class DataBaseTest {
-    @ServiceConnection
-    static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer<>("postgres:15-alpine");
-    @Autowired
-    MockUserRepo mockUserRepo;
-    @Autowired
-    MockUserService mockUserService;
+  @ServiceConnection
+  static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer<>("postgres:15-alpine");
 
-    @Test
-    public void testEntityCreation(){
-        MockUser mockUser = new MockUser();
-        mockUser.setName("kaleab");
-        mockUser.setRated(4);
+  @Autowired MockUserRepo mockUserRepo;
+  @Autowired MockUserService mockUserService;
 
-        MockUser savedUser = mockUserRepo.save(mockUser);
-        Long savedUSerId = savedUser.getId();
+  @Test
+  public void testEntityCreation() {
+    MockUser mockUser = new MockUser();
+    mockUser.setName("kaleab");
+    mockUser.setRated(4);
 
-        // now we see if we can access that database
+    MockUser savedUser = mockUserRepo.save(mockUser);
+    Long savedUSerId = savedUser.getId();
 
-        Optional<MockUser> retrievedOptionalUser = mockUserRepo.findById(savedUSerId);
-        MockUser retrievedUSer = retrievedOptionalUser.get();
-        retrievedUSer.setName("abebe");
-        mockUserService.updateUser(retrievedUSer);
+    // now we see if we can access that database
 
-        // now for the assertion test
+    Optional<MockUser> retrievedOptionalUser = mockUserRepo.findById(savedUSerId);
+    MockUser retrievedUSer = retrievedOptionalUser.get();
+    retrievedUSer.setName("abebe");
+    mockUserService.updateUser(retrievedUSer);
 
-        Optional<MockUser> toBeAssertedMockUser = mockUserRepo.findById(savedUSerId);
-        assertThat(toBeAssertedMockUser.get().getName()).isEqualTo("abebe");
+    // now for the assertion test
 
-    }
-
-
-
+    Optional<MockUser> toBeAssertedMockUser = mockUserRepo.findById(savedUSerId);
+    assertThat(toBeAssertedMockUser.get().getName()).isEqualTo("abebe");
+  }
 }
