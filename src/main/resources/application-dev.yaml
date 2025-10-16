@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:jdbc:postgresql://localhost:5432/rating_api_db
+    username: SEuser
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: none
