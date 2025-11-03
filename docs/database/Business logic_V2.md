@@ -1,6 +1,14 @@
-# add rating logic
+# Add Rating Logic
 
-so we need to add the folwoign thing as or srequist of the compney, there must be a way that products should be rated out of 5 stars and the phramcies should be able to give the reting and comment, and comments should be netest and treaded so here are the things that will change.
-need,
-so the medesine enitity will need a way to store the cualulated average of all the users ratings, but not only that we need also a way to asscoiates the invidaula rating to the medsines and also the there reviews should be seen clearer
-and aothere users should comment on there open review. a perosn can rate with out leaving a review but they cant leave a reviw with out rating. but to leave a comment on a review they dont need to first review.
+We need to add the following features as per the company’s new requirements:
+
+Products must be rated out of **five stars**, and pharmacies should be able to give both **ratings and comments**.  
+Comments should also be **nested** and **threaded**.
+
+Here are the required changes:
+
+- The **medicine entity** will need a way to store the **calculated average** of all user ratings.  
+- We also need a way to **associate individual ratings** with their respective medicines.  
+- Reviews should be displayed clearly, and other users should be able to **comment on open reviews**.  
+- A person can **rate without leaving a review**, but they **cannot leave a review without first rating**.  
+- However, to **comment on an existing review**, a user does **not** need to have left a review themselves.
