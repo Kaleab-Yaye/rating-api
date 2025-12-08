@@ -8,21 +8,20 @@ import lombok.Setter;
 @Table(name = "order_list")
 public class OrderList {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private @Getter @Setter Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private @Getter @Setter Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "medicines_id", nullable = false)
-    private @Getter @Setter Medicine medicine;
+  @ManyToOne
+  @JoinColumn(name = "medicines_id", nullable = false)
+  private @Getter @Setter Medicine medicine;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private @Getter @Setter Order order;
+  @ManyToOne
+  @JoinColumn(name = "order_id", nullable = false)
+  private @Getter @Setter Order order;
 
-    @Column(name = "amount_ordered")
-    private @Getter @Setter Integer amountOrdered;
+  @Column(name = "amount_ordered")
+  private @Getter @Setter Integer amountOrdered;
 
-    @Version
-    private @Getter @Setter Integer version;
+  @Version private @Getter @Setter Integer version;
 }

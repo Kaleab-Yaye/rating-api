@@ -8,21 +8,20 @@ import lombok.Setter;
 @Table(name = "medicines")
 public class Medicine {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private @Getter @Setter Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private @Getter @Setter Long id;
 
-    @Column(nullable = false, unique = true)
-    private @Getter @Setter String name;
+  @Column(nullable = false, unique = true)
+  private @Getter @Setter String name;
 
-    @Column(columnDefinition = "TEXT")
-    private @Getter @Setter String about;
+  @Column(columnDefinition = "TEXT")
+  private @Getter @Setter String about;
 
-    private @Getter @Setter Long price;
+  private @Getter @Setter Long price;
 
-    @Column(name = "average_rating")
-    private @Getter @Setter Integer averageRating;
+  @Column(name = "average_rating")
+  private @Getter @Setter Integer averageRating;
 
-    @Version
-    private @Getter @Setter Integer version;
+  @Version private @Getter @Setter Integer version;
 }

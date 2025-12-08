@@ -9,19 +9,18 @@ import lombok.Setter;
 @Table(name = "med_batches")
 public class MedBatch {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private @Getter @Setter Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private @Getter @Setter Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "med_id")
-    private @Getter @Setter Medicine medicine;
+  @ManyToOne
+  @JoinColumn(name = "med_id")
+  private @Getter @Setter Medicine medicine;
 
-    @Column(name = "amount_present")
-    private @Getter @Setter Long amountPresent;
+  @Column(name = "amount_present")
+  private @Getter @Setter Long amountPresent;
 
-    private @Getter @Setter LocalDate expiry;
+  private @Getter @Setter LocalDate expiry;
 
-    @Version
-    private @Getter @Setter Integer version;
+  @Version private @Getter @Setter Integer version;
 }

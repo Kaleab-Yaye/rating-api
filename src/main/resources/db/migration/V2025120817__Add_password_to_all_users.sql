@@ -1,0 +1,2 @@
+ALTER TABLE pharmacists ADD COLUMN password VARCHAR(255) NOT NULL;
+ALTER TABLE inventory_managers ADD COLUMN password VARCHAR(255) NOT NULL;
