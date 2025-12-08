@@ -26,7 +26,8 @@ This is not an SQL script.**
 2. name; **VARCHAR(255)**, UNIQUE, NOT NULL  
 3. email; **VARCHAR(255)**, UNIQUE, NOT NULL  
 4. is_admin; **BOOLEAN**  
-5. version  
+5. version
+6. type; **String**, DEFAULT "InventoryManager"
 
 ---
 
@@ -63,7 +64,8 @@ This is not an SQL script.**
 3. email; **VARCHAR(255)**, NOT NULL, UNIQUE  
 4. pharmacy_id; **BIGINT**, FK → pharmacies.id, INDEX, NOT NULL  
 5. is_admin; **BOOLEAN**, DEFAULT FALSE  
-6. version  
+6. version ;
+7. type; **STRING**, Default "Pharmacist"
 
 ---
 
