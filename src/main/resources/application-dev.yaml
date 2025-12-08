@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:jdbc:postgresql://localhost:5432/rating_api_db
-    username: SEuser
+    url: jdbc:postgresql://localhost:5432/rating_api_db
+    username: SEgroup
     password: 1234
 
   jpa:
