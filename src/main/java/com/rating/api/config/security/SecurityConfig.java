@@ -28,7 +28,7 @@ public class SecurityConfig {
             auth ->
                 auth // this is how we build the requist chain to make sure that some parts are
                     // allow all some parts are allow all
-                    .requestMatchers("api/v1/health")
+                    .requestMatchers("/api/v1/health","/api/v1/register/pharmacists")
                     .permitAll()
                     .anyRequest()
                     .authenticated())
