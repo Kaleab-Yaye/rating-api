@@ -17,6 +17,7 @@ They must have the following attributes:
 2. **name, email address, and other personal identification columns**.  
 3. **is_admin** — A boolean column defining who the admin of these inventory managers is, so that they can add as many inventory managers as necessary.
 4. **type** — A string column holding the type of user. For this table, the default value will be `"InventoryManager"`.
+5. **password** - Astirng colum to store hashed Passowrd
 
 ---
 
@@ -32,3 +33,4 @@ The following are their attributes:
 5. **is_admin** — Indicates who is the manager of the pharmacy.  
    This makes it easier when they want to add another pharmacist.
 6. **type** — A string column holding the type of user. For this table, the default value will be `"Pharmacist"`.
+7. **password** - A string 
