@@ -20,7 +20,7 @@ public class Pharmacist {
   private @Getter @Setter String email;
 
   @ManyToOne
-  @JoinColumn(name = "pharmacy_id", nullable = false)
+  @JoinColumn(name = "pharmacy_id", nullable = true)
   private @Getter @Setter Pharmacy pharmacy;
 
   @Column(name = "is_admin")

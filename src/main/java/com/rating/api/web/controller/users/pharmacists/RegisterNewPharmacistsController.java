@@ -20,7 +20,7 @@ public class RegisterNewPharmacistsController {
     @PostMapping
     public ResponseEntity<String> register(@Valid @RequestBody  RegisterPharmacistRequest request){
         pharmacistService.register(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body("user "+ request.name() + "created");
+        return ResponseEntity.status(HttpStatus.CREATED).body("user "+ request.name() + " created");
     }
 
 }
