@@ -28,14 +28,19 @@ public class SecurityConfig {
             auth ->
                 auth // this is how we build the requist chain to make sure that some parts are
                     // allow all some parts are allow all
-                    .requestMatchers("/api/v1/health","/api/v1/register/pharmacists")
+                    .requestMatchers("api/health/v1/hello","/api/v1/register/pharmacists","/error")
                     .permitAll()
                     .anyRequest()
                     .authenticated())
+
         .httpBasic(
             Customizer
                 .withDefaults()); // we need all the normal steps that spring woudl take when the
     // requist is basic, like passowrd aoutentication
+
+
+
+
     return httpSecurity
         .build(); // the list is build and tomcat can now iterate over eatch filters to see what to
     // do with teh request
