@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Login {
   private AuthService authService;
 
-  public void setAuthService(AuthService authService) {
+  public Login(AuthService authService) {
     this.authService = authService;
   }
 
