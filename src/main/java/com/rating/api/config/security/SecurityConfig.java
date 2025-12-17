@@ -10,11 +10,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration // i made sure spring boot looks at this class at start up
 public class SecurityConfig {
   @Bean // the object returned form this methode will becomes a bean manged by spring
-  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)
+  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, JwtAuthenticationFilter jwtAuthenticationFilter)
       throws Exception { // HttpSecuirty Object lets us build the Filter chain in builder patter
     httpSecurity
         .sessionManagement(
@@ -38,11 +39,9 @@ public class SecurityConfig {
                     .permitAll()
                     .anyRequest()
                     .authenticated())
-        .httpBasic(
-            Customizer
-                .withDefaults()); // we need all the normal steps that spring woudl take when the
-    // requist is basic, like passowrd aoutentication
 
+
+      .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // this addes our new secuiryt filter before the secuiryt filter that we mentioned
     return httpSecurity
         .build(); // the list is build and tomcat can now iterate over eatch filters to see what to
     // do with teh request
