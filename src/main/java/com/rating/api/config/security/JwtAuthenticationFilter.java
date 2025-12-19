@@ -1,5 +1,7 @@
 package com.rating.api.config.security;
 
+import com.rating.api.domain.Pharmacist;
+import com.rating.api.repository.PharmacistRepo;
 import com.rating.api.service.security.FindUserDetails;
 import com.rating.api.service.security.JwtService;
 import jakarta.servlet.FilterChain;
@@ -7,6 +9,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
+
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,10 +22,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
   private final JwtService jwtService;
   private final FindUserDetails findUserDetails;
+  private final PharmacistRepo pharmacistRepo; // must be fixed for now just to check
 
-  JwtAuthenticationFilter(JwtService jwtService, FindUserDetails findUserDetails) {
+  JwtAuthenticationFilter(JwtService jwtService, FindUserDetails findUserDetails,  PharmacistRepo pharmacistRepo) {
     this.jwtService = jwtService;
     this.findUserDetails = findUserDetails;
+    this.pharmacistRepo = pharmacistRepo;
   }
 
   @Override
@@ -44,13 +50,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     String jwt = authHeader.substring(7); // we wan to remove the bearer heading
-    String email = jwtService.extractUsername(jwt);
+    String username = jwtService.extractUsername(jwt);
 
+
+    Optional<Pharmacist> pharmacist = pharmacistRepo.getPharmacistsByName(username);///!!!!! must change
+      String email = pharmacist.get().getEmail();
     if (email != null
         & SecurityContextHolder.getContext().getAuthentication()
             == null) { // we can only work if the user email is presetn and the Secruity context is
       // empte
       // then now we load the user from the data base
+
+
+
       UserDetails userDetails = findUserDetails.loadUserByUsername(email);
       // validate the token it migh get expired or tempered with
       if (jwtService.isTokenValid(jwt, userDetails)) { // if valide >>>

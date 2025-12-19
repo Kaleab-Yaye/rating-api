@@ -26,7 +26,7 @@ public class FindUserDetails implements UserDetailsService {
     if (optionalPharmacistpharmacist.isPresent()) {
       Pharmacist pharmacist = optionalPharmacistpharmacist.get();
       return org.springframework.security.core.userdetails.User.builder()
-          .username(pharmacist.getEmail()) // has to be email
+          .username(pharmacist.getName()) // has to be email or ID for futre use
           .password(pharmacist.getPassword())
           .roles(pharmacist.getType() + pharmacist.getIsAdmin().toString())
           .build();

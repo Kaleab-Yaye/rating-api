@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PharmacistRepo extends JpaRepository<Pharmacist, UUID> {
   Optional<Pharmacist> getPharmacistsByEmail(String email);
+  Optional<Pharmacist> getPharmacistsByName(String name);
 }
