@@ -1,13 +1,19 @@
 package com.rating.api.service.security;
 
+import com.rating.api.domain.Pharmacist;
+import com.rating.api.repository.PharmacistRepo;
+import com.rating.api.service.users.PharmacistService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 import javax.crypto.SecretKey;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -17,6 +23,7 @@ public class JwtService {
   @Value("${jwt.secret-key}") // this is the secret key that will be used with the hashing of the
   // singiture
   private String SECRET_KEY;
+
 
   // this will generate a token from the user detials
   public String generateToken(UserDetails userDetails) {
@@ -35,6 +42,7 @@ public class JwtService {
 
   // this will generate the token from the user detials + any extra detials that was given to it
   public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+      //UUID  uuid = userDetails.getUsername().
     return Jwts.builder()
         .claims(extraClaims) // with extra calim of our need
         .subject(userDetails.getUsername())
@@ -85,7 +93,7 @@ public class JwtService {
         .getPayload();
   }
 
-  // this is where the raw characher become an array of bits so that all the hashin alcoirhms can do
+  // this is where the raw charachter become an array of bits so that all the hashin alcoirhms can do
   // the job.
   private SecretKey getSignInKey() {
     byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
