@@ -2,7 +2,7 @@ package com.rating.api.dto.register;
 
 import jakarta.validation.constraints.*;
 
-public record RegisterInventoryMang(
+public record RegisterInventoryMangRequest(
     @NotBlank(message = "Name cannot be empetey")
         @Size(message = "the name is too short or too long", min = 3, max = 32)
         String name,
