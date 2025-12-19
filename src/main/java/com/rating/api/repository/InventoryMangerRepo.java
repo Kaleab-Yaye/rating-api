@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InventoryMangerRepo extends JpaRepository<InventoryManager, UUID> {
   Optional<InventoryManager> getInventoryManagerByEmail(String email);
+
+  Optional<InventoryManager> getInventoryManagerById(UUID uuid);
 }

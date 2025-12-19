@@ -10,23 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetUUID {
+public class GetEmail {
   @Autowired private InventoryMangerRepo inventoryMangerRepo;
   @Autowired PharmacistRepo pharmacistRepo;
 
-  GetUUID(InventoryMangerRepo inventoryMangerRepo, PharmacistRepo pharmacistRepo) {
+  GetEmail(InventoryMangerRepo inventoryMangerRepo, PharmacistRepo pharmacistRepo) {
     this.inventoryMangerRepo = inventoryMangerRepo;
     this.pharmacistRepo = pharmacistRepo;
   }
 
-  public UUID getUUID(String email) {
-    Optional<Pharmacist> pharmacist = pharmacistRepo.getPharmacistsByEmail(email);
-    Optional<InventoryManager> inventoryManager =
-        inventoryMangerRepo.getInventoryManagerByEmail(email);
+  public String getEmail(UUID uuid) {
+    Optional<Pharmacist> pharmacist = pharmacistRepo.getPharmacistsById(uuid);
+    Optional<InventoryManager> inventoryManager = inventoryMangerRepo.getInventoryManagerById(uuid);
     if (pharmacist.isPresent()) {
-      return pharmacist.get().getId();
+      return pharmacist.get().getEmail();
     } else {
-      return inventoryManager.get().getId();
+      return inventoryManager.get().getEmail();
     }
   }
 }

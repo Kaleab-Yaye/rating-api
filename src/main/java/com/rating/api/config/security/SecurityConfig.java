@@ -3,7 +3,6 @@ package com.rating.api.config.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -15,7 +14,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration // i made sure spring boot looks at this class at start up
 public class SecurityConfig {
   @Bean // the object returned form this methode will becomes a bean manged by spring
-  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, JwtAuthenticationFilter jwtAuthenticationFilter)
+  public SecurityFilterChain securityFilterChain(
+      HttpSecurity httpSecurity, JwtAuthenticationFilter jwtAuthenticationFilter)
       throws Exception { // HttpSecuirty Object lets us build the Filter chain in builder patter
     httpSecurity
         .sessionManagement(
@@ -39,9 +39,11 @@ public class SecurityConfig {
                     .permitAll()
                     .anyRequest()
                     .authenticated())
-
-
-      .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // this addes our new secuiryt filter before the secuiryt filter that we mentioned
+        .addFilterBefore(
+            jwtAuthenticationFilter,
+            UsernamePasswordAuthenticationFilter
+                .class); // this addes our new secuiryt filter before the secuiryt filter that we
+    // mentioned
     return httpSecurity
         .build(); // the list is build and tomcat can now iterate over eatch filters to see what to
     // do with teh request

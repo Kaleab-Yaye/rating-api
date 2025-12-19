@@ -26,7 +26,7 @@ public class FindUserDetails implements UserDetailsService {
     if (optionalPharmacistpharmacist.isPresent()) {
       Pharmacist pharmacist = optionalPharmacistpharmacist.get();
       return org.springframework.security.core.userdetails.User.builder()
-          .username(pharmacist.getName()) // has to be email or ID for futre use
+          .username(pharmacist.getId().toString()) // has to be email or ID for futre use
           .password(pharmacist.getPassword())
           .roles(pharmacist.getType() + pharmacist.getIsAdmin().toString())
           .build();
@@ -37,7 +37,7 @@ public class FindUserDetails implements UserDetailsService {
               .getInventoryManagerByEmail(email)
               .orElseThrow(() -> new UsernameNotFoundException("No user with the Email: " + email));
       return org.springframework.security.core.userdetails.User.builder()
-          .username(inventoryManager.getName())
+          .username(inventoryManager.getId().toString())
           .password(inventoryManager.getPassword())
           .roles(inventoryManager.getType() + inventoryManager.getIsAdmin().toString())
           .build();
