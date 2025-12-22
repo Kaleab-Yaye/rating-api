@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/pharmacist/add_new_pharmacist_to_pharmacy")
+@RequestMapping("/api/v1/pharmacist")
 public class AddPharmacistToPharmacy {
   @Autowired PharmacistService pharmacistService;
 
-  @PostMapping
+  @PostMapping("/add_new_pharmacist_to_pharmacy")
   public ResponseEntity<String> addPharmacistToPharmacy(
       @RequestBody AddPharmacistToPharmacyRequest addPharmacistToPharmacyRequest) {
     pharmacistService.addPharmacistToPharmacy(addPharmacistToPharmacyRequest);
