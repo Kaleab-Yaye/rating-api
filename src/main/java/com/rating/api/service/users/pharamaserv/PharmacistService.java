@@ -41,6 +41,7 @@ public class PharmacistService {
         pharmacistRepo
             .getPharmacistsById(addPharmacistToPharmacyRequest.pharmacyId())
             .get()
-            .getPharmacy()); // let hibrnate handel the table joining & we know the pharcy exits so no need for check logic here
+            .getPharmacy()); // let hibrnate handel the table joining & we know the pharcy exits so
+    // no need for check logic here
   }
 }
