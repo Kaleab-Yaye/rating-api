@@ -37,6 +37,10 @@ public class SecurityConfig {
                         "/error",
                         "/api/v1/user/login")
                     .permitAll()
+                    .requestMatchers("/api/v1/pharmacist/add_new_pharmacist_to_pharmacy")
+                    .hasRole("PHARMACIST")
+                    .requestMatchers("/api/v1/pharmacist/add_new_pharmacist_to_pharmacy")
+                    .hasRole("ADMIN")
                     .anyRequest()
                     .authenticated())
         .addFilterBefore(
