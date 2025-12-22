@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddPharmacy {
   @Autowired PharmacyService pharmacyService;
 
-  @PostMapping("/creat/pharmacy")
+  @PostMapping("/create/pharmacy")
   public ResponseEntity<String> addPharmacy(AddPharmacyRequest addPharmacyRequest) {
     pharmacyService.addPharmacy(addPharmacyRequest);
     return ResponseEntity.status(HttpStatus.CREATED)
