@@ -34,7 +34,13 @@ public class PharmacistService {
   public void addPharmacistToPharmacy(
       AddPharmacistToPharmacyRequest addPharmacistToPharmacyRequest) {
     Pharmacist pharmacist =
-        pharmacistRepo.getPharmacistsByEmail(addPharmacistToPharmacyRequest.email()).orElseThrow();
-    pharmacist.setPharmacy();
+        pharmacistRepo
+            .getPharmacistsByEmail(addPharmacistToPharmacyRequest.email())
+            .orElseThrow(); // first extract the pharmcist
+    pharmacist.setPharmacy(
+        pharmacistRepo
+            .getPharmacistsById(addPharmacistToPharmacyRequest.pharmacyId())
+            .get()
+            .getPharmacy()); // let hibrnate handel the table joining & we know the pharcy exits so no need for check logic here
   }
 }
