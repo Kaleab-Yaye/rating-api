@@ -37,9 +37,13 @@ public class SecurityConfig {
                         "/error",
                         "/api/v1/user/login")
                     .permitAll()
-                    .requestMatchers("/api/v1/pharmacist/add_new_pharmacist_to_pharmacy")
+                    .requestMatchers(
+                        "/api/v1/pharmacist/add_new_pharmacist_to_pharmacy",
+                        "/api/v1/pharmacist/add_new_pharmacist")
                     .hasRole("PHARMACIST")
-                    .requestMatchers("/api/v1/pharmacist/add_new_pharmacist_to_pharmacy")
+                    .requestMatchers(
+                        "/api/v1/pharmacist/add_new_pharmacist_to_pharmacy",
+                        "/api/v1/pharmacist/add_new_pharmacist")
                     .hasRole("ADMIN")
                     .anyRequest()
                     .authenticated())
