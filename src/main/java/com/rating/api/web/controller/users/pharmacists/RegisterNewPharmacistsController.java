@@ -1,7 +1,7 @@
 package com.rating.api.web.controller.users.pharmacists;
 
-import com.rating.api.dto.RegisterPharmacistRequest;
-import com.rating.api.service.users.PharmacistService;
+import com.rating.api.dto.register.RegisterPharmacistRequest;
+import com.rating.api.service.users.pharamaserv.PharmacistService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

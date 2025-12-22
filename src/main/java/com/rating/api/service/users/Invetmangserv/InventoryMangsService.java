@@ -1,4 +1,4 @@
-package com.rating.api.service.users;
+package com.rating.api.service.users.Invetmangserv;
 
 import com.rating.api.domain.InventoryManager;
 import com.rating.api.dto.register.RegisterInventoryMangRequest;

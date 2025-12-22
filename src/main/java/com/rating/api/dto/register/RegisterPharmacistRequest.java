@@ -1,4 +1,4 @@
-package com.rating.api.dto;
+package com.rating.api.dto.register;
 
 import com.rating.api.domain.Pharmacy;
 import jakarta.validation.constraints.*;
