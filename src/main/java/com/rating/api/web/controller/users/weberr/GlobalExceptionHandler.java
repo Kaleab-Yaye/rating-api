@@ -38,4 +38,13 @@ public class GlobalExceptionHandler {
     problemDetail.setProperty("errors", ex.getMessage());
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
   }
+
+  @ExceptionHandler
+  public ResponseEntity<ProblemDetail> handleAllExceptions(Exception ex) {
+    ProblemDetail problemDetail =
+        ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Our bad will be fixed");
+    System.out.println(ex.getMessage());
+    ex.printStackTrace();
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(problemDetail);
+  }
 }

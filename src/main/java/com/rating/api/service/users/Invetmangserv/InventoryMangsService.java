@@ -2,6 +2,7 @@ package com.rating.api.service.users.Invetmangserv;
 
 import com.rating.api.domain.InventoryManager;
 import com.rating.api.dto.register.RegisterInventoryMangRequest;
+import com.rating.api.dto.register.admindto.inventmngs.AddInvntMangRequest;
 import com.rating.api.repository.InventoryMangerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +24,13 @@ public class InventoryMangsService {
     inventoryManager.setEmail(registerInventoryMang.email());
     inventoryManager.setName(registerInventoryMang.name());
     inventoryManager.setIsAdmin(registerInventoryMang.isAdmin());
+    inventoryMangerRepo.save(inventoryManager);
+  }
+
+  public void addInventMang(AddInvntMangRequest addInvntMang) {
+    InventoryManager inventoryManager =
+        inventoryMangerRepo.getInventoryManagerByEmail(addInvntMang.email()).orElseThrow();
+    inventoryManager.setApproved(true);
     inventoryMangerRepo.save(inventoryManager);
   }
 }

@@ -30,7 +30,7 @@ public class Pharmacist {
   private @Getter @Setter String password;
 
   @Column(name = "type")
-  private @Getter @Setter String type;
+  private @Getter @Setter String type = "PHARMACIST";
 
   @Version private @Getter @Setter Integer version;
 }

@@ -5,6 +5,7 @@ import com.rating.api.domain.Pharmacist;
 import com.rating.api.repository.InventoryMangerRepo;
 import com.rating.api.repository.PharmacistRepo;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,8 +29,10 @@ public class FindUserDetails implements UserDetailsService {
     if (optionalPharmacistpharmacist.isPresent()) {
       Pharmacist pharmacist = optionalPharmacistpharmacist.get();
       // to collect the roles in a do pattern way
-      ArrayList<String> role = new ArrayList<>();
+      List<String> role = new ArrayList<>();
+
       role.add(pharmacist.getType());
+
       if (pharmacist.getIsAdmin()) {
         role.add("ADMIN");
       }
@@ -51,6 +54,10 @@ public class FindUserDetails implements UserDetailsService {
       if (inventoryManager.getIsAdmin()) {
         role.add("ADMIN");
       }
+      if (inventoryManager.getApproved() != null && inventoryManager.getApproved()) {
+        role.add("APPROVED");
+      }
+
       return org.springframework.security.core.userdetails.User.builder()
           .username(inventoryManager.getId().toString())
           .password(inventoryManager.getPassword())

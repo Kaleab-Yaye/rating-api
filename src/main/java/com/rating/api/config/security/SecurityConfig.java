@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration // i made sure spring boot looks at this class at start up
+@EnableMethodSecurity
 public class SecurityConfig {
   @Bean // the object returned form this methode will becomes a bean manged by spring
   public SecurityFilterChain securityFilterChain(
@@ -32,29 +34,23 @@ public class SecurityConfig {
                 auth // this is how we build the requist chain to make sure that some parts are
                     // allow all some parts are allow all
                     .requestMatchers(
-                        "api/health/v1/hello",
+                        "/api/health/v1/hello",
                         "/api/v1/register/pharmacists",
                         "/error",
                         "/api/v1/user/login",
                         "/api/v1/register/InventManeg")
                     .permitAll()
-                    .requestMatchers(
-                        "/api/v1/pharmacist/add_new_pharmacist_to_pharmacy",
-                        "/api/v1/pharmacist//create/pharmacy")
-                    .hasRole("PHARMACIST")
-                    .requestMatchers(
-                        "/api/v1/pharmacist/add_new_pharmacist_to_pharmacy",
-                        "/api/v1/pharmacist//create/pharmacy")
-                    .hasRole("ADMIN")
                     .anyRequest()
                     .authenticated())
         .addFilterBefore(
             jwtAuthenticationFilter,
             UsernamePasswordAuthenticationFilter
-                .class); // this addes our new secuiryt filter before the secuiryt filter that we
+                .class); // this addes our new secuiryt filter before the
+    // secuiryt filter that we
     // mentioned
     return httpSecurity
-        .build(); // the list is build and tomcat can now iterate over eatch filters to see what to
+        .build(); // the list is build and tomcat can now iterate over eatch filters to see what
+    // to
     // do with teh request
   }
 

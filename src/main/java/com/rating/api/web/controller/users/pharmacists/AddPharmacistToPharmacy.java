@@ -5,6 +5,7 @@ import com.rating.api.service.users.pharamaserv.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddPharmacistToPharmacy {
   @Autowired PharmacistService pharmacistService;
 
+  @PreAuthorize("hasRole('PHARMACIST') and hasRole('ADMIN')")
   @PostMapping("/add_new_pharmacist_to_pharmacy")
   public ResponseEntity<String> addPharmacistToPharmacy(
       @RequestBody AddPharmacistToPharmacyRequest addPharmacistToPharmacyRequest) {
