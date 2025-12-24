@@ -28,5 +28,8 @@ public class InventoryManager {
   @Column(name = "type")
   private @Getter @Setter String type;
 
+  @Column(name = "approved")
+  private @Getter @Setter Boolean approved;
+
   @Version private @Getter @Setter Integer version;
 }

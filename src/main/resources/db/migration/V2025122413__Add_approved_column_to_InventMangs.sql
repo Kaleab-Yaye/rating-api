@@ -1,0 +1,1 @@
+ALTER TABLE inventory_managers ADD COLUMN approved BOOLEAN;
