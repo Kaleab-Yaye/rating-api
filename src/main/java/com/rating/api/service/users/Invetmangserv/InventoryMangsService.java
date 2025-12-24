@@ -1,9 +1,12 @@
 package com.rating.api.service.users.Invetmangserv;
 
 import com.rating.api.domain.InventoryManager;
+import com.rating.api.domain.Medicine;
+import com.rating.api.dto.register.Inventmng.AddMedicineRequest;
 import com.rating.api.dto.register.RegisterInventoryMangRequest;
 import com.rating.api.dto.register.admindto.inventmngs.AddInvntMangRequest;
 import com.rating.api.repository.InventoryMangerRepo;
+import com.rating.api.repository.MedicineRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,10 +15,15 @@ import org.springframework.stereotype.Service;
 public class InventoryMangsService {
   @Autowired private final InventoryMangerRepo inventoryMangerRepo;
   @Autowired private final PasswordEncoder passwordEncoder;
+  @Autowired private final MedicineRepo medicineRepo;
 
-  InventoryMangsService(InventoryMangerRepo inventoryMangerRepo, PasswordEncoder passwordEncoder) {
+  InventoryMangsService(
+      InventoryMangerRepo inventoryMangerRepo,
+      PasswordEncoder passwordEncoder,
+      MedicineRepo medicineRepo) {
     this.inventoryMangerRepo = inventoryMangerRepo;
     this.passwordEncoder = passwordEncoder;
+    this.medicineRepo = medicineRepo;
   }
 
   public void register(RegisterInventoryMangRequest registerInventoryMang) {
@@ -32,5 +40,14 @@ public class InventoryMangsService {
         inventoryMangerRepo.getInventoryManagerByEmail(addInvntMang.email()).orElseThrow();
     inventoryManager.setApproved(true);
     inventoryMangerRepo.save(inventoryManager);
+  }
+
+  public void addMedicine(AddMedicineRequest addMedicineRequest) {
+    Medicine medicine = new Medicine();
+    medicine.setName(addMedicineRequest.name());
+    medicine.setPrice(addMedicineRequest.price());
+    medicine.setAbout(addMedicineRequest.about());
+
+    medicineRepo.save(medicine);
   }
 }
