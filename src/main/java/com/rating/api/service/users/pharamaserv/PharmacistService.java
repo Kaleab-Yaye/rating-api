@@ -2,7 +2,7 @@ package com.rating.api.service.users.pharamaserv;
 
 import com.rating.api.domain.Pharmacist;
 import com.rating.api.dto.register.RegisterPharmacistRequest;
-import com.rating.api.dto.register.admindto.AddPharmacistToPharmacyRequest;
+import com.rating.api.dto.register.admindto.pharmacist.AddPharmacistToPharmacyRequest;
 import com.rating.api.repository.PharmacistRepo;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

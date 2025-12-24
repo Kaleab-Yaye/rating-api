@@ -1,6 +1,6 @@
 package com.rating.api.web.controller.users.pharmacists;
 
-import com.rating.api.dto.register.admindto.AddPharmacistToPharmacyRequest;
+import com.rating.api.dto.register.admindto.pharmacist.AddPharmacistToPharmacyRequest;
 import com.rating.api.service.users.pharamaserv.PharmacistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
