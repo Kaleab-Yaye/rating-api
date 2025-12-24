@@ -22,6 +22,7 @@ public class InventoryMangsService {
     inventoryManager.setPassword(passwordEncoder.encode(registerInventoryMang.password()));
     inventoryManager.setEmail(registerInventoryMang.email());
     inventoryManager.setName(registerInventoryMang.name());
+    inventoryManager.setIsAdmin(registerInventoryMang.isAdmin());
     inventoryMangerRepo.save(inventoryManager);
   }
 }

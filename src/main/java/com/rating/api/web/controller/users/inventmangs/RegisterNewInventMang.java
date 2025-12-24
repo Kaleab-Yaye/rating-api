@@ -27,6 +27,6 @@ public class RegisterNewInventMang {
         .body(
             "User with the name "
                 + registerInventoryMangRequest.name()
-                + "is succsufully registerd");
+                + " is succsufully registerd");
   }
 }
