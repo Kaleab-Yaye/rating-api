@@ -45,10 +45,16 @@ public class FindUserDetails implements UserDetailsService {
           inventoryMangerRepo
               .getInventoryManagerByEmail(email)
               .orElseThrow(() -> new UsernameNotFoundException("No user with the Email: " + email));
+
+      ArrayList<String> role = new ArrayList<>();
+      role.add(inventoryManager.getType());
+      if (inventoryManager.getIsAdmin()) {
+        role.add("ADMIN");
+      }
       return org.springframework.security.core.userdetails.User.builder()
           .username(inventoryManager.getId().toString())
           .password(inventoryManager.getPassword())
-          .roles(inventoryManager.getType() + inventoryManager.getIsAdmin().toString())
+          .roles(role.toArray(role.toArray(new String[0])))
           .build();
     }
   }

@@ -39,11 +39,11 @@ public class SecurityConfig {
                     .permitAll()
                     .requestMatchers(
                         "/api/v1/pharmacist/add_new_pharmacist_to_pharmacy",
-                        "/api/v1/pharmacist/add_new_pharmacist")
+                        "/api/v1/pharmacist//create/pharmacy")
                     .hasRole("PHARMACIST")
                     .requestMatchers(
                         "/api/v1/pharmacist/add_new_pharmacist_to_pharmacy",
-                        "/api/v1/pharmacist/add_new_pharmacist")
+                        "/api/v1/pharmacist//create/pharmacy")
                     .hasRole("ADMIN")
                     .anyRequest()
                     .authenticated())
