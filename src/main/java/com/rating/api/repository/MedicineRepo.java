@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MedicineRepo extends JpaRepository<Medicine, Long> {
   Optional<Medicine> findMedicineById(Long id);
+
+  Optional<Medicine> findMedicineByName(String name);
 }
