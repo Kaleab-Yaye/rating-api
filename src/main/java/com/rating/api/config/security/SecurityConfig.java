@@ -35,7 +35,8 @@ public class SecurityConfig {
                         "api/health/v1/hello",
                         "/api/v1/register/pharmacists",
                         "/error",
-                        "/api/v1/user/login")
+                        "/api/v1/user/login",
+                        "/api/v1/register/InventManeg")
                     .permitAll()
                     .requestMatchers(
                         "/api/v1/pharmacist/add_new_pharmacist_to_pharmacy",

@@ -52,7 +52,9 @@ CREATE TABLE pharmacists (
                              name VARCHAR(255) NOT NULL UNIQUE,
                              email VARCHAR(255) NOT NULL UNIQUE,
                              pharmacy_id BIGINT NOT NULL,
-                             is_admin BOOLEAN DEFAULT FALSE,
+                             is_admin
+
+                              DEFAULT FALSE,
                              version INT,
 
                              CONSTRAINT fk_pharmacists_pharmacy FOREIGN KEY (pharmacy_id) REFERENCES pharmacies(id)
