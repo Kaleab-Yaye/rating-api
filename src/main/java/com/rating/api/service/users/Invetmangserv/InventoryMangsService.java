@@ -1,11 +1,14 @@
 package com.rating.api.service.users.Invetmangserv;
 
 import com.rating.api.domain.InventoryManager;
+import com.rating.api.domain.MedBatch;
 import com.rating.api.domain.Medicine;
+import com.rating.api.dto.register.Inventmng.AddMedBatchRequest;
 import com.rating.api.dto.register.Inventmng.AddMedicineRequest;
 import com.rating.api.dto.register.RegisterInventoryMangRequest;
 import com.rating.api.dto.register.admindto.inventmngs.AddInvntMangRequest;
 import com.rating.api.repository.InventoryMangerRepo;
+import com.rating.api.repository.MedBatchRepo;
 import com.rating.api.repository.MedicineRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,14 +19,17 @@ public class InventoryMangsService {
   @Autowired private final InventoryMangerRepo inventoryMangerRepo;
   @Autowired private final PasswordEncoder passwordEncoder;
   @Autowired private final MedicineRepo medicineRepo;
+  @Autowired private final MedBatchRepo medBatchRepo;
 
   InventoryMangsService(
       InventoryMangerRepo inventoryMangerRepo,
       PasswordEncoder passwordEncoder,
-      MedicineRepo medicineRepo) {
+      MedicineRepo medicineRepo,
+      MedBatchRepo medBatchRepo) {
     this.inventoryMangerRepo = inventoryMangerRepo;
     this.passwordEncoder = passwordEncoder;
     this.medicineRepo = medicineRepo;
+    this.medBatchRepo = medBatchRepo;
   }
 
   public void register(RegisterInventoryMangRequest registerInventoryMang) {
@@ -49,5 +55,14 @@ public class InventoryMangsService {
     medicine.setAbout(addMedicineRequest.about());
 
     medicineRepo.save(medicine);
+  }
+
+  public void addNewMedBatch(AddMedBatchRequest addMedBatchRequest) {
+    MedBatch medBatch = new MedBatch();
+    Medicine medicine = medicineRepo.findMedicineByName(addMedBatchRequest.name()).orElseThrow();
+    medBatch.setMedicine(medicine);
+    medBatch.setAmountPresent(addMedBatchRequest.amountToBeAdded());
+    medBatch.setExpiry(addMedBatchRequest.localDate());
+    medBatchRepo.save(medBatch);
   }
 }

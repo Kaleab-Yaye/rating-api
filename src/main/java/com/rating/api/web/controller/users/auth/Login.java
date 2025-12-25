@@ -19,6 +19,15 @@ public class Login {
 
   @PostMapping("/login")
   public AuthResponse login(@RequestBody AuthRequest authRequest) {
-    return authService.login(authRequest);
+
+    try {
+
+      return authService.login(authRequest);
+    } catch (Exception e) {
+      System.out.println("Target hit lets the problem");
+      System.out.println(e.getMessage());
+      e.printStackTrace();
+    }
+    return null;
   }
 }
