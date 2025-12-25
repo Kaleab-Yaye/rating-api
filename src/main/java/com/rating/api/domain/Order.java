@@ -28,7 +28,7 @@ public class Order {
   private @Getter @Setter OffsetDateTime orderDeliveredDate;
 
   @Column(name = "order_closed")
-  private @Getter @Setter Boolean orderClosed;
+  private @Getter @Setter Boolean orderClosed = false;
 
   @Version private @Getter @Setter Integer version;
 }
