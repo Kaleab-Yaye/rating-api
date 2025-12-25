@@ -3,7 +3,10 @@ package com.rating.api.service.users.pharamaserv;
 import com.rating.api.domain.Pharmacist;
 import com.rating.api.dto.register.RegisterPharmacistRequest;
 import com.rating.api.dto.register.admindto.pharmacist.AddPharmacistToPharmacyRequest;
+import com.rating.api.dto.register.pharamaciest.OrderRequest;
 import com.rating.api.repository.PharmacistRepo;
+import com.rating.api.repository.PharmacyRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class PharmacistService {
   private final PasswordEncoder passwordEncoder;
   private final PharmacistRepo pharmacistRepo;
+  @Autowired PharmacyRepo pharmacyRepo;
 
   PharmacistService(PasswordEncoder passwordEncoder, PharmacistRepo pharmacistRepo) {
     this.passwordEncoder = passwordEncoder;
@@ -44,4 +48,6 @@ public class PharmacistService {
             .getPharmacy()); // let hibrnate handel the table joining & we know the pharcy exits so
     // no need for check logic here
   }
+
+  public void putOrder(OrderRequest orderRequest) {}
 }
